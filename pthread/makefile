@@ -14,5 +14,11 @@ primer:primer.c
 thread_compete:thread_compete.c
 	gcc thread_compete.c -o ${OUT_DIR}/thread_compete
 
+primer_wrong:primer_wrong.c
+	gcc primer_wrong.c -o ${OUT_DIR}/primer_wrong
+
+main_care_other:main_care_other.c
+	gcc main_care_other.c -o ${OUT_DIR}/main_care_other
+
 clean:
 	rm ${OUT_DIR}/*

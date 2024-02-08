@@ -13,21 +13,19 @@ struct th_arg_num {
     int num;
 };
 
-
 int main() {
     int i, j, mark;
     pthread_t threads[THRNUM];
-    struct th_arg_num *arg;
-    void *return_arg;               // 用来接收thread返回的内存
+    void *arg_space;
 
     for (i = LEFT; i <= RIGHT; i++) {
-        arg = malloc(sizeof(*arg));
-        arg->num = i;
-        pthread_create(threads + i - LEFT, NULL, checkIsPrimer, arg);
+        int *arg_num = malloc(sizeof(int));
+        *arg_num = i;
+        pthread_create(threads + i - LEFT, NULL, checkIsPrimer, arg_num);
     }
     for (i = LEFT; i <= RIGHT; i++) {
-        pthread_join(threads[i - LEFT], &return_arg);
-        free(return_arg);
+        pthread_join(threads[i - LEFT], &arg_space);
+        free(arg_space);
     }
     
     exit(0);
@@ -35,7 +33,7 @@ int main() {
 
 static void *checkIsPrimer(void *arg) {
     int i, j, mark;
-    i = ((struct th_arg_num*)arg)->num;
+    i = *(int *)arg;
     mark = 1;
     for (j = 2; j < i / 2; j++) {
         if (i % j == 0) {

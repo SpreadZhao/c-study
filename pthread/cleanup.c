@@ -23,13 +23,9 @@ static void *foo(void *p)
 int main()
 {
     pthread_t tid;
-
     puts("begin");
-
     pthread_create(&tid, NULL, foo, NULL);
-
     pthread_join(tid, NULL);
     puts("end");
-
     exit(0);
 }
