@@ -2,6 +2,8 @@ CFLAGS+=-pthread
 LDFLAGS+=-pthread
 OUT_DIR=out
 
+all:cleanup create1 primer thread_compete primer_wrong main_care_other
+
 cleanup:cleanup.c
 	gcc cleanup.c -o ${OUT_DIR}/cleanup
 
