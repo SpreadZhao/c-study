@@ -9,10 +9,6 @@
 
 static void *checkIsPrimer(void *);
 
-struct th_arg_num {
-    int num;
-};
-
 int main() {
     int i, j, mark;
     pthread_t threads[THRNUM];
