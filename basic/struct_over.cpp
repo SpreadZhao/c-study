@@ -2,11 +2,11 @@
 #include <stdlib.h>
 using namespace std;
 
-typedef unsigned char DByte
+typedef unsigned char DByte;
 
 struct Data {
-    int num;
-    char ch;
+    std::string name;
+    int size;
     DByte *data() {
         return (DByte *)(this + 1);
     }
@@ -14,9 +14,11 @@ struct Data {
 
 int main() {
     Data *pData = (Data *)malloc(sizeof(Data) + 10);
-    pData->num = 12;
-    pData->ch = 'x';
+    pData->name = "Spread's Buffer";
+    pData->size = 10;
     memcpy(pData->data(), "haha", sizeof("haha"));
-    std::cout << pData->data() << std::endl;
+    std::cout << "name: " << pData->name << "[" << &(pData->name) << "]" << std::endl;
+    std::cout << "size: " << pData->size << "[" << (void*)&(pData->size) << "]" << std::endl;
+    std::cout << "data: " << pData->data() << "[" << (void*)pData->data() << "]" <<  std::endl;
     return 0;
 }
